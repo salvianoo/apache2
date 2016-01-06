@@ -98,6 +98,7 @@ when 'redhat', 'centos', 'scientific', 'fedora', 'amazon', 'oracle'
   default['apache']['perl_pkg']    = 'perl'
   default['apache']['apachectl']   = '/usr/sbin/apachectl'
   default['apache']['dir']         = '/etc/httpd'
+  default['apache']['disable_log'] = false
   default['apache']['log_dir']     = '/var/log/httpd'
   default['apache']['error_log']   = 'error.log'
   default['apache']['access_log']  = 'access.log'

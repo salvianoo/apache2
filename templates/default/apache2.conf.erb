@@ -136,10 +136,18 @@ HostnameLookups Off
 # logged here.  If you *do* define an error logfile for a <VirtualHost>
 # container, that host's errors will be logged there and not here.
 #
-<% if node['apache']['error_log'] =~ /^syslog:/ || node['apache']['error_log'] =~ /^\|/ %>
+<% unless node['apache']['disable_log'] %>
+
+  <% if node['apache']['error_log'] =~ /^syslog:/ || node['apache']['error_log'] =~ /^\|/ %>
 ErrorLog <%= node['apache']['error_log'] %>
-<% else %>
+  <% else %>
 ErrorLog <%= node['apache']['log_dir'] %>/<%= node['apache']['error_log'] %>
+  <% end %>
+
+<% end %>
+
+<% if node['apache']['disable_log'] %>
+# ErrorLog <% = node['apache']['error_log'] %>
 <% end %>
 
 #
@@ -147,7 +155,12 @@ ErrorLog <%= node['apache']['log_dir'] %>/<%= node['apache']['error_log'] %>
 # Possible values include: debug, info, notice, warn, error, crit,
 # alert, emerg.
 #
+
+<% if node['apache']['disable_log'] %>
+# LogLevel warn
+<% else %>
 LogLevel warn
+<% end %>
 
 # COOK-1021: Dummy LoadModule directive to aid module installations
 #LoadModule dummy_module modules/mod_dummy.so
