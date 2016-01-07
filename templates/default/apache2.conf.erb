@@ -137,17 +137,15 @@ HostnameLookups Off
 # container, that host's errors will be logged there and not here.
 #
 <% unless node['apache']['disable_log'] %>
-
   <% if node['apache']['error_log'] =~ /^syslog:/ || node['apache']['error_log'] =~ /^\|/ %>
 ErrorLog <%= node['apache']['error_log'] %>
   <% else %>
 ErrorLog <%= node['apache']['log_dir'] %>/<%= node['apache']['error_log'] %>
   <% end %>
-
 <% end %>
 
 <% if node['apache']['disable_log'] %>
-# ErrorLog <% = node['apache']['error_log'] %>
+#ErrorLog <%= node['apache']['error_log'] %>
 <% end %>
 
 #
