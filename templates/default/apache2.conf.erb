@@ -269,3 +269,6 @@ Include <%= node['apache']['dir'] %>/conf-enabled/*.conf
 # Include the virtual host configurations:
 Include <%= node['apache']['dir'] %>/sites-enabled/*.conf
 <% end -%>
+
+# Timezone
+SetEnv TZ America/Sao_Paulo
