@@ -155,7 +155,7 @@ ErrorLog <%= node['apache']['log_dir'] %>/<%= node['apache']['error_log'] %>
 #
 
 <% if node['apache']['disable_log'] %>
-# LogLevel warn
+#LogLevel warn
 <% else %>
 LogLevel warn
 <% end %>
